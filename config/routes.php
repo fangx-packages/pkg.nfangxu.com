@@ -12,10 +12,13 @@ declare(strict_types=1);
  * @license  https://pkg.nfangxu.com/license
  */
 
+use App\Controller\AuthController;
+use App\Controller\IndexController;
 use Hyperf\HttpServer\Router\Router;
 
-Router::addRoute(['GET', 'POST', 'HEAD'], '/', 'App\Controller\IndexController@index');
+Router::get('/', [IndexController::class, 'index']);
 
-Router::get('/favicon.ico', function () {
-    return '';
-});
+Router::get('/license', [IndexController::class, 'license']);
+Router::get('/login', [AuthController::class, 'showLoginForm']);
+
+Router::get('/{uri:.*}', [IndexController::class, 'redirect']);

@@ -14,10 +14,22 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use function Hyperf\ViewEngine\view;
+
 class IndexController extends AbstractController
 {
     public function index()
     {
-        return 'pkg.nfangxu.com';
+        return view('index');
+    }
+
+    public function license()
+    {
+        return view('license');
+    }
+
+    public function redirect()
+    {
+        return $this->rpRedirect('/login', 302);
     }
 }
