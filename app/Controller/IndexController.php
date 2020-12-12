@@ -20,7 +20,7 @@ class IndexController extends AbstractController
 {
     public function index()
     {
-        return view('index');
+        return view('welcome');
     }
 
     public function license()
