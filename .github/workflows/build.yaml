@@ -1,0 +1,26 @@
+name: Publish Docker image
+on:
+  push:
+    branches:
+      - release-*
+jobs:
+  push_to_registry:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+
+      - name: Login
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ secrets.ALIYUN_HOST }}
+          username: ${{ secrets.ALIYUN_USERNAME }}
+          password: ${{ secrets.ALIYUN_PASSWORD }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          load: true
+          tags: ${{ secrets.ALIYUN_REPOSITRY }}:${{ github.sha }}
+      - run: docker push ${{ secrets.ALIYUN_REPOSITRY }}:${{ github.sha }}
