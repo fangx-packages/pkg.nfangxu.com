@@ -20,7 +20,7 @@ class IndexController extends AbstractController
 {
     public function index()
     {
-        return view('welcome');
+        return view('index');
     }
 
     public function license()
@@ -30,6 +30,6 @@ class IndexController extends AbstractController
 
     public function redirect()
     {
-        return $this->rpRedirect('/login', 302);
+        return rpRedirect('/login', 302);
     }
 }

@@ -21,4 +21,6 @@ Router::get('/', [IndexController::class, 'index']);
 Router::get('/license', [IndexController::class, 'license']);
 Router::get('/login', [AuthController::class, 'showLoginForm']);
 
-Router::get('/{uri:.*}', [IndexController::class, 'redirect']);
+if (config('app_env') !== 'local') {
+    Router::get('/{uri:.*}', [IndexController::class, 'redirect']);
+}
